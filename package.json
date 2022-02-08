@@ -1,0 +1,9 @@
+{
+  "name": "suchibot-scripts",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@types/node": "^17.0.9",
+    "suchibot": "^0.4.1"
+  }
+}
