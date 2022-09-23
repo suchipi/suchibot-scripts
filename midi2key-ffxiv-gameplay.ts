@@ -28,12 +28,12 @@ Midi.start(1, {
   "F  2": Key.MINUS,
 
   // Back
-  "F# 2": Key.ESCAPE,
+  "F# 2": [Key.LEFT_SHIFT, Key.MINUS],
 
   "G  2": Key.EQUAL,
-  "Ab 2": null,
+  "Ab 2": [Key.LEFT_SHIFT, Key.EQUAL],
   "A  2": Key.M,
-  "Bb 2": null,
+  "Bb 2": Key.ESCAPE,
   "B  2": null,
 
   // Movement
