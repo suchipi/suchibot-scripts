@@ -177,58 +177,62 @@ export function start(
   const setState = (key: any, val: number) => states.set(key, val);
 
   input.on("message", (deltaTime, message) => {
-    if (!handledIds.has(message[0])) {
-      console.log(`Unhandled: ${message.join(", ")}`);
-    }
-
-    const [id, keyNum, velocity] = message;
-    const keyName = Notes[keyNum];
-
-    process.stdout.write(
-      `${String(MessageIDs[id] || "UNK").padEnd(8, " ")} ${keyName
-        .replace(/\s+/g, "")
-        .padEnd(3, " ")} -> `
-    );
-
-    const input = mappings[keyName];
-    if (input == null) {
-      process.stdout.write("\n");
-      return;
-    }
-
-    const stateBefore = Boolean(getState(input));
-
-    switch (id) {
-      case MessageIDs.KEY_ON: {
-        setState(input, getState(input) + 1);
-        break;
+    try {
+      if (!handledIds.has(message[0])) {
+        console.log(`Unhandled: ${message.join(", ")}`);
       }
-      case MessageIDs.KEY_OFF: {
-        setState(input, getState(input) - 1);
-        break;
-      }
-      default: {
-        // unhandled event; shouldn't happen unless you added to MessageIDs
-        // without adding to this switch
-        process.stdout.write(`unhandled (${id})\n`);
+
+      const [id, keyNum, velocity] = message;
+      const keyName = Notes[keyNum];
+
+      process.stdout.write(
+        `${String(MessageIDs[id] || "UNK").padEnd(8, " ")} ${keyName
+          .replace(/\s+/g, "")
+          .padEnd(3, " ")} -> `
+      );
+
+      const input = mappings[keyName];
+      if (input == null) {
+        process.stdout.write("\n");
         return;
       }
-    }
 
-    const stateAfter = Boolean(getState(input));
+      const stateBefore = Boolean(getState(input));
 
-    if (stateBefore != stateAfter) {
-      const method = stateAfter ? Keyboard.hold : Keyboard.release;
-
-      const keysToPress = ([] as Array<Key>).concat(input);
-      if (method === Keyboard.release) {
-        keysToPress.reverse();
+      switch (id) {
+        case MessageIDs.KEY_ON: {
+          setState(input, getState(input) + 1);
+          break;
+        }
+        case MessageIDs.KEY_OFF: {
+          setState(input, getState(input) - 1);
+          break;
+        }
+        default: {
+          // unhandled event; shouldn't happen unless you added to MessageIDs
+          // without adding to this switch
+          process.stdout.write(`unhandled (${id})\n`);
+          return;
+        }
       }
-      console.log(method.name.padEnd(7, " "), keysToPress);
 
-      for (const key of keysToPress) {
-        method(key);
+      const stateAfter = Boolean(getState(input));
+
+      if (stateBefore != stateAfter) {
+        const method = stateAfter ? Keyboard.hold : Keyboard.release;
+
+        const keysToPress = ([] as Array<Key>).concat(input);
+        if (method === Keyboard.release) {
+          keysToPress.reverse();
+        }
+        console.log(method.name.padEnd(7, " "), keysToPress);
+
+        for (const key of keysToPress) {
+          method(key);
+        }
       }
+    } catch (err) {
+      // ignore
     }
   });
 

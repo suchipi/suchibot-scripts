@@ -1,8 +1,6 @@
 #!/usr/bin/env suchibot
-import { Key } from "suchibot";
+import { Key, Keyboard, MouseButton } from "suchibot";
 import * as Midi from "./lib/midi";
-
-const Notes = Midi.Notes;
 
 Midi.listDevices();
 
@@ -32,15 +30,15 @@ Midi.start(1, {
 
   "G  2": Key.EQUAL,
   "Ab 2": [Key.LEFT_SHIFT, Key.EQUAL],
-  "A  2": Key.M,
+  "A  2": Key.T,
   "Bb 2": Key.ESCAPE,
-  "B  2": null,
+  "B  2": Key.M,
 
   // Movement
   "C  3": Key.A,
   "C# 3": Key.W,
   "D  3": Key.S,
-  "Eb 3": Key.R,
+  "Eb 3": Key.W,
   "E  3": Key.D,
 
   // Jump
@@ -82,8 +80,8 @@ Midi.start(1, {
   "G  5": null,
   "Ab 5": null,
   "A  5": null,
-  "Bb 5": null,
-  "B  5": null,
+  "Bb 5": Key.PAGE_UP,
+  "B  5": Key.PAGE_DOWN,
 
   "C  6": Key.RIGHT_BRACKET,
 });
