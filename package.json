@@ -5,7 +5,7 @@
   "dependencies": {
     "@types/node": "^17.0.9",
     "midi": "^2.0.0",
-    "suchibot": "^0.4.1"
+    "suchibot": "^0.6.0"
   },
   "devDependencies": {
     "@types/midi": "^2.0.0"
