@@ -10,7 +10,7 @@ Keyboard.onUp(Key.PAUSE_BREAK, () => {
   while (true) {
     await sleep(1);
     if (shouldHold) {
-      Mouse.click();
+      Mouse.click(MouseButton.RIGHT);
     }
   }
 })();
