@@ -2,14 +2,13 @@
 import { Mouse, MouseButton, Keyboard, Key, sleep } from "suchibot";
 
 let shouldHold = false;
-const button = MouseButton.RIGHT;
 
-Keyboard.onUp(Key.PAUSE_BREAK, () => {
+Keyboard.onUp(Key.CAPS_LOCK, () => {
   shouldHold = !shouldHold;
 
   if (shouldHold) {
-    Mouse.hold(button);
+    Keyboard.hold(Key.LEFT_CONTROL);
   } else {
-    Mouse.release(button);
+    Keyboard.release(Key.LEFT_CONTROL);
   }
 });

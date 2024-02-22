@@ -1,16 +1,28 @@
 #!/usr/bin/env suchibot
 import { Mouse, MouseButton, Keyboard, Key, sleep } from "suchibot";
 
-let shouldHold = false;
+let shouldSpamLeft = false;
+let shouldSpamRight = false;
+
+Keyboard.onUp(Key.SCROLL_LOCK, () => {
+  shouldSpamLeft = !shouldSpamLeft;
+});
+
 Keyboard.onUp(Key.PAUSE_BREAK, () => {
-  shouldHold = !shouldHold;
+  shouldSpamRight = !shouldSpamRight;
 });
 
 (async () => {
   while (true) {
     await sleep(1);
-    if (shouldHold) {
+    if (shouldSpamLeft) {
+      Mouse.click(MouseButton.LEFT);
+    }
+    if (shouldSpamRight) {
       Mouse.click(MouseButton.RIGHT);
     }
   }
 })();
+
+console.log("Scroll lock: toggle spamming left");
+console.log("Pause/break: toggle spamming right");

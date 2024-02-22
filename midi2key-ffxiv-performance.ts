@@ -4,7 +4,7 @@ import * as Midi from "./lib/midi";
 
 Midi.listDevices();
 
-Midi.start(1, {
+Midi.start(0, {
   "C  1": null,
   "C# 1": null,
   "D  1": null,
