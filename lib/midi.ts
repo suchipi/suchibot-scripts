@@ -1,5 +1,5 @@
 #!/usr/bin/env suchibot
-import { Key, Keyboard } from "suchibot";
+import { Key, Keyboard, sleep } from "suchibot";
 import * as midi from "midi";
 
 let input: midi.Input | null = null;
@@ -229,6 +229,7 @@ export function start(
 
         for (const key of keysToPress) {
           method(key);
+          sleep.sync(3);
         }
       }
     } catch (err) {
