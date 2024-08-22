@@ -4,6 +4,7 @@ import * as Midi from "./lib/midi";
 
 Midi.listDevices();
 
+// Change this `1` here as needed, using the info logged by `listDevices` above
 Midi.start(
   0,
   {
@@ -20,6 +21,7 @@ Midi.start(
     "Bb 1": null,
     "B  1": null,
 
+    // You'll have to bind the piano keys in FFXIV to these keys like this
     "C  2": Key.A,
     "C# 2": Key.B,
     "D  2": Key.C,

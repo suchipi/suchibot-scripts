@@ -1,30 +1,26 @@
 #!/usr/bin/env suchibot
-import { Keyboard, Key, record, Tape, isMouseEvent } from "suchibot";
+import { Keyboard, Key, Tape, keyboardEventFilter } from "suchibot";
 
-let tape: Tape | null = null;
+const tape = new Tape([
+  keyboardEventFilter({ key: Key.SCROLL_LOCK }),
+  keyboardEventFilter({ key: Key.PAUSE_BREAK }),
+]);
 
 Keyboard.onUp(Key.SCROLL_LOCK, () => {
-  if (tape && tape.isRecording) {
-    tape.stop();
+  if (tape.state === Tape.State.RECORDING) {
+    tape.stopRecording();
     console.log("Stopped recording");
   } else {
-    if (tape) tape.stop();
-    tape = record({
-      eventFilter: (event) => {
-        if (isMouseEvent(event)) return true;
-
-        return !(
-          event.key === Key.SCROLL_LOCK || event.key === Key.PAUSE_BREAK
-        );
-      },
-    });
+    if (tape.state === Tape.State.PLAYING) {
+      console.log("Stopped playing");
+      tape.stopPlaying();
+    }
+    tape.record();
     console.log("Recording to tape...");
   }
 });
 
 Keyboard.onUp(Key.PAUSE_BREAK, async () => {
-  if (!tape) return;
-
   console.log("Replaying tape...");
   await tape.play();
   console.log("Tape playback finished");

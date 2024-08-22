@@ -14,3 +14,5 @@ Keyboard.onUp(Key.PAUSE_BREAK, () => {
     }
   }
 })();
+
+console.log("Press Pause/Break to toggle spamming spacebar really fast");

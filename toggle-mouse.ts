@@ -13,3 +13,5 @@ Keyboard.onUp(Key.PAUSE_BREAK, () => {
     Mouse.release(button);
   }
 });
+
+console.log("Press Pause/Break to toggle holding down right-click");

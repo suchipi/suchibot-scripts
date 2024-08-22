@@ -11,3 +11,5 @@ Keyboard.onUp(Key.PAUSE_BREAK, () => {
     Keyboard.release(Key.W);
   }
 });
+
+console.log("Press Pause/Break to toggle holding down W");

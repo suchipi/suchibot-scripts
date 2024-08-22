@@ -4,6 +4,7 @@ import * as Midi from "./lib/midi";
 
 Midi.listDevices();
 
+// Change this `1` here as needed, using the info logged by `listDevices` above
 Midi.start(1, {
   "C  1": Key.ONE,
   "C# 1": [Key.LEFT_SHIFT, Key.ONE],

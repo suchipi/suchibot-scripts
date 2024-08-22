@@ -12,3 +12,5 @@ Keyboard.onUp(Key.CAPS_LOCK, () => {
     Keyboard.release(Key.LEFT_CONTROL);
   }
 });
+
+console.log("Press caps lock to toggle holding down left control");

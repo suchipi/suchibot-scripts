@@ -51,3 +51,7 @@ Keyboard.onUp(Key.UP, () => {
     Keyboard.release(key);
   }
 });
+
+console.log(
+  "Press 'up arrow' to press every alphanumeric key at once.\n...Why did I make this?"
+);

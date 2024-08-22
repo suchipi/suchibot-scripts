@@ -4,7 +4,12 @@ import * as midi from "midi";
 
 let input: midi.Input | null = null;
 
-// List the midi devices connected to the computer
+/**
+ * Lists the midi devices connected to the computer.
+ *
+ * This can be used to help you figure out which index to use as the
+ * `selectedPort` in {@link start}.
+ */
 export function listDevices() {
   if (input == null) {
     input = new midi.Input();
@@ -162,10 +167,43 @@ export const MessageIDs = {
 
 const handledIds = new Set(Object.values(MessageIDs));
 
-// Start listening for midi events and press the corresponding keys when they occur
+/**
+ * Start listening for midi events and press the corresponding computer keyboard
+ * keys when they occur
+ *
+ * @param selectedPort The zero-based index of which MIDI input device to use. If you don't know what to use, try `0` or `1`.
+ * @param mappings Mapping object whose keys are midi key names (eg. "F# 5") and whose values are one or more computer keyboard keys (eg Key.BACKSPACE)
+ * @param options Additional options that control behavior
+ */
 export function start(
+  /**
+   * The zero-based index of which MIDI input device to use.
+   *
+   * If you don't know what to use, try `0` or `1`.
+   */
   selectedPort: number,
-  mappings: { [key: string | number]: Key | null | Array<Key> },
+  /**
+   * Mapping object whose keys are midi key names (eg. "F# 5") and whose values
+   * are one or more computer keyboard keys (eg Key.BACKSPACE)
+   *
+   * For example:
+   * ```ts
+   * {
+   *   "G  2": Key.EQUAL,
+   *   "Ab 2": [Key.LEFT_SHIFT, Key.EQUAL],
+   *   "A  2": Key.T,
+   *   "Bb 2": Key.ESCAPE,
+   *   "B  2": Key.M,
+   * }
+   * ```
+   *
+   * When there's more than one computer keyboard key, they'll be pressed
+   * sequentially from left-to-right when the midi key is pressed, and released
+   * sequentially from right-to-left when the midi key is released.
+   */
+  mappings: {
+    [key: string | number]: Key | null | Array<Key>;
+  },
   options?: {
     /**
      * Set this to put a synchronous sleep after each note, so that notes which

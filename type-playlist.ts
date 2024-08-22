@@ -34,6 +34,7 @@ Charm Moe Shop, Puniden Charm
 
 Keyboard.onDown(Key.PAUSE_BREAK, async () => {
   for (const song of songs) {
+    // Type `!play <song>` and then press enter
     Keyboard.hold(Key.LEFT_SHIFT);
     Keyboard.tap(Key.ONE);
     Keyboard.release(Key.LEFT_SHIFT);
@@ -42,3 +43,5 @@ Keyboard.onDown(Key.PAUSE_BREAK, async () => {
     Keyboard.tap(Key.ENTER);
   }
 });
+
+console.log("Press Pause/Break to type out a long playlist for Rhythm bot");

@@ -11,3 +11,5 @@ Keyboard.onUp(Key.SCROLL_LOCK, () => {
     Keyboard.release(Key.W);
   }
 });
+
+console.log("Press Scroll Lock to toggle holding down W");

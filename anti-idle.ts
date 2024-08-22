@@ -11,3 +11,7 @@ const DELAY = 5 * 60 * 1000;
     await sleep(DELAY);
   }
 })();
+
+console.log(
+  "Anti-idle program running; 'A' or 'D' will be tapped briefly once every 5 minutes."
+);
