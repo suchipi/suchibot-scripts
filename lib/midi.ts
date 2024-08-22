@@ -165,7 +165,18 @@ const handledIds = new Set(Object.values(MessageIDs));
 // Start listening for midi events and press the corresponding keys when they occur
 export function start(
   selectedPort: number,
-  mappings: { [key: string | number]: Key | null | Array<Key> }
+  mappings: { [key: string | number]: Key | null | Array<Key> },
+  options?: {
+    /**
+     * Set this to put a synchronous sleep after each note, so that notes which
+     * were pressed simultaneously will appear to have been pressed staggered.
+     *
+     * This is useful in programs like FFXIV's performance mode where you can't
+     * press more than one note at once, but the notes have enough decay to
+     * resemble a chord when played arpeggiated.
+     */
+    sleepAfterMs?: number;
+  }
 ) {
   if (input == null) {
     input = new midi.Input();
@@ -229,7 +240,9 @@ export function start(
 
         for (const key of keysToPress) {
           method(key);
-          sleep.sync(3);
+          if (options?.sleepAfterMs) {
+            sleep.sync(options.sleepAfterMs);
+          }
         }
       }
     } catch (err) {
