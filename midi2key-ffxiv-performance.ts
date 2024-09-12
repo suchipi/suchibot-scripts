@@ -4,7 +4,7 @@ import * as Midi from "./lib/midi";
 
 Midi.listDevices();
 
-// Change this `1` here as needed, using the info logged by `listDevices` above
+// Change this `0` here as needed, using the info logged by `listDevices` above
 Midi.start(
   0,
   {
