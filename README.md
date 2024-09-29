@@ -11,6 +11,7 @@ some of them are silly, some are utilities I use in games, some are just fun.
 - install [Node.js](https://nodejs.org/en)
 - clone the repo and open a terminal to the folder you cloned it into
 - run `npm install`
+  - for some reason, `npm install` can fail in windows on node versions > 18, but you can work around it by removing "midi" from the package.json dependencies, running `npm install`, then re-adding it and running `npm install` again.
 
 ### Each use after
 
