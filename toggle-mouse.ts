@@ -2,7 +2,7 @@
 import { Mouse, MouseButton, Keyboard, Key, sleep } from "suchibot";
 
 let shouldHold = false;
-const button = MouseButton.RIGHT;
+const button = MouseButton.LEFT;
 
 Keyboard.onUp(Key.PAUSE_BREAK, () => {
   shouldHold = !shouldHold;
@@ -14,4 +14,4 @@ Keyboard.onUp(Key.PAUSE_BREAK, () => {
   }
 });
 
-console.log("Press Pause/Break to toggle holding down right-click");
+console.log(`Press Pause/Break to toggle holding down ${button}-click`);
